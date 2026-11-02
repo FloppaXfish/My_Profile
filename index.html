@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mark Shane Cruzado — Front End Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;1,300&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="noise"></div>
+  <div class="orb one"></div>
+  <div class="orb two"></div>
+  <div class="orb three"></div>
+  <div class="record"></div>
+  <div class="grid-bg"></div>
+  <div class="loader">
+    <div class="cube-loader">
+      <div class="cube-face front"></div>
+      <div class="cube-face back"></div>
+      <div class="cube-face right"></div>
+      <div class="cube-face left"></div>
+      <div class="cube-face top"></div>
+      <div class="cube-face bottom"></div>
+    </div>
+    <span class="loader-text" id="loaderText">ARQ</span>
+    <span class="loader-sub" id="loaderSub">Access / Resolve / Question</span>
+    <div class="loader-bar"></div>
+  </div>
+  <div class="cursor"></div>
+  <div class="scroll-progress"></div>
+  <div class="parallax-bg">
+    <div class="para-layer para-1"></div>
+    <div class="para-layer para-2"></div>
+    <div class="para-layer para-3"></div>
+  </div>
+  <div class="side-left">
+    <span class="side-text">front end developer</span>
+    <div class="side-line"></div>
+  </div>
+  <div class="side-right">
+    <div class="side-line"></div>
+    <span class="side-text">mark shane cruzado</span>
+  </div>
+  <header class="site-header">
+    <div class="logo"><span class="cube"><span class="face front"></span><span class="face back"></span><span class="face right"></span><span class="face left"></span><span class="face top"></span><span class="face bottom"></span></span><span class="dot">ARQ</span></div>
+    <button class="burger" id="burgerBtn" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="mainNav">
+      <a href="index.html" class="active">home</a>
+      <a href="about.html">about</a>
+      <a href="projects.html">projects</a>
+      <a href="contact.html">contact</a>
+    </nav>
+  </header>
+
+  <main class="hero">
+    <p class="eyebrow">~ front end developer ~</p>
+    <div class="profile-wrap">
+      <div class="profile-pic">
+        <img src="pics/shn.jpg" alt="Mark Shane Cruzado" />
+      </div>
+    </div>
+    <h1 class="name">Mark <em>Shane</em> Cruzado</h1>
+    <p class="subtitle">Front End Developer · ARQ</p>
+    <div class="scroll-hint">↓ scroll</div>
+    <blockquote class="quote">
+      "I build calm, usable interfaces — turning ideas into pixels that feel like home."
+    </blockquote>
+    <div class="meta" style="justify-content:center">
+      <span class="pill">Lofi vibes</span>
+      <span class="pill">Clean code</span>
+      <span class="pill">Pixel perfect</span>
+    </div>
+
+    <section class="what-i-do" style="text-align:center">
+      <h2>What I Do</h2>
+      <p class="section-lead">I craft front-end experiences that feel calm, considered, and effortless to use.</p>
+      <div class="slideshow">
+        <div class="slide" style="--i:0">
+          <div class="card">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+            </div>
+            <h3>UI Development</h3>
+            <p>Building responsive, accessible interfaces with semantic HTML, modern CSS, and component-driven JavaScript that scale gracefully.</p>
+          </div>
+        </div>
+        <div class="slide" style="--i:1">
+          <div class="card">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h4l3-9 4 18 3-9h4"/></svg>
+            </div>
+            <h3>Interaction Design</h3>
+            <p>Bringing layouts to life through subtle motion, fluid transitions, and micro-interactions that guide without overwhelming.</p>
+          </div>
+        </div>
+        <div class="slide" style="--i:2">
+          <div class="card">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            </div>
+            <h3>Performance</h3>
+            <p>Optimizing load times, accessibility scores, and bundle weight so every experience stays fast and inclusive.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="terminal-section" style="text-align:center">
+      <h2>My Viewpoint</h2>
+      <div class="terminal">
+        <div class="terminal-bar">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+          <span class="terminal-title">mark@arq — zsh</span>
+        </div>
+        <div class="terminal-body">
+          <p class="output type-line">Design is not decoration — it is how a product feels in someone's hands.</p>
+          <p class="output type-line">I believe in interfaces that stay out of the way,</p>
+          <p class="output type-line">code that reads like prose, and small details that quietly</p>
+          <p class="output type-line">make a big difference. Lofi is not a style — it is a</p>
+          <p class="output type-line">mindset: calm, focused, and intentional.</p>
+          <p><span class="prompt">~</span> <span class="cursor-blink">▌</span></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="tools" style="text-align:center">
+      <h2>Tools I Use</h2>
+      <p class="section-lead">The stack I reach for when building calm, performant interfaces.</p>
+      <div class="carousel">
+        <div class="carousel-track">
+          <div class="carousel-item"><img class="tool-icon" src="https://cdn.simpleicons.org/html5/4a90d9" alt=""><span>HTML5</span></div>
+          <div class="carousel-item"><img class="tool-icon" src="https://cdn.simpleicons.org/css/4a90d9" alt=""><span>CSS3</span></div>
+          <div class="carousel-item"><img class="tool-icon" src="https://cdn.simpleicons.org/javascript/4a90d9" alt=""><span>JavaScript</span></div>
+          <div class="carousel-item"><img class="tool-icon" src="https://cdn.simpleicons.org/react/4a90d9" alt=""><span>React</span></div>
+          <div class="carousel-item"><img class="tool-icon" src="https://cdn.simpleicons.org/tailwindcss/4a90d9" alt=""><span>Tailwind</span></div>
+          <div class="carousel-item"><img class="tool-icon" src="https://cdn.simpleicons.org/git/4a90d9" alt=""><span>Git</span></div>
+          <div class="carousel-item"><img class="tool-icon" src="https://cdn.simpleicons.org/figma/4a90d9" alt=""><span>Figma</span></div>
+          <div class="carousel-item"><svg class="tool-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 6l-6 6 6 6M16 6l6 6-6 6"/></svg><span>VS Code</span></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 Mark Shane Cruzado · made with ☕ & lo-fi beats</p>
+  </footer>
+  <script>
+    const cursor = document.querySelector('.cursor');
+    document.addEventListener('mousemove', e => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+    });
+    document.querySelectorAll('a, button, .card, .pill').forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+    });
+    const scrollProgress = document.querySelector('.scroll-progress');
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (scrollTop / docHeight) * 100;
+      scrollProgress.style.width = progress + '%';
+    });
+    document.getElementById('burgerBtn').addEventListener('click', function(){ document.getElementById('mainNav').classList.toggle('open'); this.classList.toggle('open'); });
+    document.querySelectorAll('#mainNav a').forEach(a => a.addEventListener('click', () => { document.getElementById('mainNav').classList.remove('open'); document.getElementById('burgerBtn').classList.remove('open'); }));
+    // Decrypt effect for ARQ
+    const loaderText = document.getElementById('loaderText');
+    const loaderSub = document.getElementById('loaderSub');
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%';
+    const target = 'ARQ';
+    const subTarget = 'Access / Resolve / Question';
+    let iteration = 0;
+    const interval = setInterval(() => {
+      loaderText.textContent = target.split('').map((letter, i) => {
+        if (i < iteration) return target[i];
+        return chars[Math.floor(Math.random() * chars.length)];
+      }).join('');
+      if (iteration >= target.length) {
+        clearInterval(interval);
+        // start subtitle decrypt after ARQ finishes
+        let subIter = 0;
+        const subInterval = setInterval(() => {
+          loaderSub.textContent = subTarget.split('').map((letter, i) => {
+            if (letter === ' ' || letter === '/') return letter;
+            if (i < subIter) return subTarget[i];
+            return chars[Math.floor(Math.random() * chars.length)];
+          }).join('');
+          if (subIter >= subTarget.length) clearInterval(subInterval);
+          subIter += 1 / 4;
+        }, 60);
+      }
+      iteration += 1 / 3;
+    }, 40);
+  </script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Mark Shane Cruzado</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;1,300&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="noise"></div>
+  <div class="orb one"></div>
+  <div class="orb two"></div>
+  <div class="orb three"></div>
+  <div class="record"></div>
+  <div class="grid-bg"></div>
+  <div class="contact-3d">
+    <div class="cube-3d">
+      <div class="cube-face front"></div>
+      <div class="cube-face back"></div>
+      <div class="cube-face right"></div>
+      <div class="cube-face left"></div>
+      <div class="cube-face top"></div>
+      <div class="cube-face bottom"></div>
+    </div>
+  </div>
+  <div class="cursor"></div>
+  <div class="scroll-progress"></div>
+  <div class="side-left">
+    <span class="side-text">contact</span>
+    <div class="side-line"></div>
+  </div>
+  <div class="side-right">
+    <div class="side-line"></div>
+    <span class="side-text">mark shane cruzado</span>
+  </div>
+  <header class="site-header">
+    <div class="logo"><span class="cube"><span class="face front"></span><span class="face back"></span><span class="face right"></span><span class="face left"></span><span class="face top"></span><span class="face bottom"></span></span><span class="dot">ARQ</span></div>
+    <button class="burger" id="burgerBtn" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="mainNav">
+      <a href="index.html">home</a>
+      <a href="about.html">about</a>
+      <a href="projects.html">projects</a>
+      <a href="contact.html" class="active">contact</a>
+    </nav>
+  </header>
+  <main class="page">
+    <h1>Contact</h1>
+    <p class="section-lead">Let's build something calm and beautiful together.</p>
+
+    <div class="contact-form-wrapper">
+      <form class="contact-form" onsubmit="return false;">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" placeholder="Your name" />
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="your@email.com" />
+        </div>
+        <div class="form-group">
+          <label for="subject">Subject</label>
+          <input type="text" id="subject" placeholder="What's this about?" />
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" rows="5" placeholder="Your message..."></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Send Inquiry →</button>
+      </form>
+    </div>
+
+    <div class="contact-links">
+      <h2>Or reach me directly</h2>
+      <div class="contact-links-grid">
+        <a href="mailto:markshanecruzado@example.com" class="contact-link-item">
+          <div class="contact-link-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <h3>Email</h3>
+            <p>markshanecruzado@example.com</p>
+          </div>
+        </a>
+        <a href="https://github.com/markshanecruzado" class="contact-link-item">
+          <div class="contact-link-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          </div>
+          <div>
+            <h3>GitHub</h3>
+            <p>github.com/markshanecruzado</p>
+          </div>
+        </a>
+        <a href="https://linkedin.com/in/markshanecruzado" class="contact-link-item">
+          <div class="contact-link-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </div>
+          <div>
+            <h3>LinkedIn</h3>
+            <p>linkedin.com/in/markshanecruzado</p>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="terminal" style="margin-top: 3rem;">
+      <div class="terminal-bar">
+        <span class="dot red"></span>
+        <span class="dot yellow"></span>
+        <span class="dot green"></span>
+        <span class="terminal-title">mark@arq — zsh</span>
+      </div>
+      <div class="terminal-body">
+        <p class="output type-line">$ echo "Let's collaborate!"</p>
+        <p class="output type-line">Let's collaborate!</p>
+        <p><span class="prompt">~</span> <span class="cursor-blink">▌</span></p>
+      </div>
+    </div>
+  </main>
+  <footer><p>© 2026 Mark Shane Cruzado · made with ☕ & passion</p></footer>
+  <script>
+    const cursor = document.querySelector('.cursor');
+    document.addEventListener('mousemove', e => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+    });
+    document.querySelectorAll('a, button, .card, .pill, .contact-link-item, .submit-btn').forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+    });
+    const scrollProgress = document.querySelector('.scroll-progress');
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (scrollTop / docHeight) * 100;
+      scrollProgress.style.width = progress + '%';
+    });
+    document.getElementById('burgerBtn').addEventListener('click', function(){ document.getElementById('mainNav').classList.toggle('open'); this.classList.toggle('open'); });
+    document.querySelectorAll('#mainNav a').forEach(a => a.addEventListener('click', () => { document.getElementById('mainNav').classList.remove('open'); document.getElementById('burgerBtn').classList.remove('open'); }));
+  </script>
+</body>
+</html>

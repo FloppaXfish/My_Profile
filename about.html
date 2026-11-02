@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Council — Mark Shane Cruzado</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;1,300&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .council-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  .council-card {
+    height: 320px;
+    perspective: 1000px;
+  }
+  .card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-style: preserve-3d;
+  }
+  .council-card:hover .card-inner {
+    transform: rotateY(180deg);
+  }
+  .card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 4px;
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    backdrop-filter: blur(4px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    box-shadow: var(--shadow);
+  }
+  .card-front img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--accent);
+    margin-bottom: 1.2rem;
+    box-shadow: 0 0 20px rgba(74,144,217,0.2);
+  }
+  .card-front h3 {
+    font-family: "Playfair Display", serif;
+    font-size: 1.2rem;
+    color: var(--accent-2);
+    font-weight: 400;
+    margin-bottom: 0.3rem;
+  }
+  .card-front .role, .card-back .role {
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding: .2rem .6rem;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    margin-top: .3rem;
+    display: inline-block;
+  }
+  /* Unique role colors */
+  .council-card:nth-child(1) .role { color: #e8a87c; border-color: rgba(232,168,124,0.4); background: rgba(232,168,124,0.08); }
+  .council-card:nth-child(2) .role { color: #a78bfa; border-color: rgba(167,139,250,0.4); background: rgba(167,139,250,0.08); }
+  .council-card:nth-child(3) .role { color: #34d399; border-color: rgba(52,211,153,0.4); background: rgba(52,211,153,0.08); }
+  .council-card:nth-child(4) .role { color: #60a5fa; border-color: rgba(96,165,250,0.4); background: rgba(96,165,250,0.08); }
+  .council-card:nth-child(5) .role { color: #fbbf24; border-color: rgba(251,191,36,0.4); background: rgba(251,191,36,0.08); }
+  .council-card:nth-child(6) .role { color: #f472b6; border-color: rgba(244,114,182,0.4); background: rgba(244,114,182,0.08); }
+  /* Unique card top accent per member */
+  .council-card:nth-child(1) .card-front { border-top: 2px solid #e8a87c; }
+  .council-card:nth-child(2) .card-front { border-top: 2px solid #a78bfa; }
+  .council-card:nth-child(3) .card-front { border-top: 2px solid #34d399; }
+  .council-card:nth-child(4) .card-front { border-top: 2px solid #60a5fa; }
+  .council-card:nth-child(5) .card-front { border-top: 2px solid #fbbf24; }
+  .council-card:nth-child(6) .card-front { border-top: 2px solid #f472b6; }
+  .council-card:nth-child(1) .card-back { border-top: 2px solid #e8a87c; }
+  .council-card:nth-child(2) .card-back { border-top: 2px solid #a78bfa; }
+  .council-card:nth-child(3) .card-back { border-top: 2px solid #34d399; }
+  .council-card:nth-child(4) .card-back { border-top: 2px solid #60a5fa; }
+  .council-card:nth-child(5) .card-back { border-top: 2px solid #fbbf24; }
+  .council-card:nth-child(6) .card-back { border-top: 2px solid #f472b6; }
+  .card-back {
+    transform: rotateY(180deg);
+    background: linear-gradient(135deg, rgba(74,144,217,0.08), rgba(100,120,200,0.05));
+  }
+  .card-back .quote {
+    font-style: italic;
+    color: var(--text);
+    font-size: 1rem;
+    font-family: "Playfair Display", serif;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+    position: relative;
+    padding: 0 1rem;
+  }
+  .card-back .quote::before,
+  .card-back .quote::after {
+    content: '"';
+    font-size: 2.5rem;
+    color: var(--accent);
+    opacity: 0.3;
+    position: absolute;
+    font-family: "Playfair Display", serif;
+  }
+  .card-back .quote::before { top: -1rem; left: -0.5rem; }
+  .card-back .quote::after { bottom: -2rem; right: -0.5rem; }
+  .card-back .role {
+    margin-top: auto;
+  }
+
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  .value-card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 4px;
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    transition: all 0.4s;
+    backdrop-filter: blur(4px);
+    position: relative;
+    overflow: hidden;
+  }
+  .value-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--accent);
+    box-shadow: var(--glow);
+  }
+  .value-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(74,144,217,0.08), transparent 50%);
+    pointer-events: none;
+  }
+  .value-card h3 {
+    font-family: "Playfair Display", serif;
+    font-size: 1.3rem;
+    color: var(--accent);
+    font-weight: 400;
+    margin-bottom: 1rem;
+  }
+  .value-card p {
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+  .value-icon {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 1.5rem;
+    color: var(--accent);
+  }
+  .value-icon svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 0 8px var(--accent));
+  }
+
+  /* Council Orbit Layout */
+  .council-orbit {
+    position: relative;
+    width: 100%;
+    min-height: 600px;
+    margin-top: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .orbit-center {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+  }
+  .center-cube {
+    width: 120px;
+    height: 120px;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: centerCubeSpin 8s linear infinite;
+    margin: 0 auto;
+  }
+  .center-cube .cube-face {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    background: rgba(74,144,217,0.1);
+    border: 1px solid var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Playfair Display", serif;
+    font-size: 1.5rem;
+    color: var(--accent);
+    letter-spacing: 4px;
+  }
+  .center-cube .front  { transform: translateZ(60px); }
+  .center-cube .back   { transform: rotateY(180deg) translateZ(60px); }
+  .center-cube .right  { transform: rotateY(90deg) translateZ(60px); }
+  .center-cube .left   { transform: rotateY(-90deg) translateZ(60px); }
+  .center-cube .top    { transform: rotateX(90deg) translateZ(60px); }
+  .center-cube .bottom { transform: rotateX(-90deg) translateZ(60px); }
+  @keyframes centerCubeSpin {
+    0% { transform: rotateX(0deg) rotateY(0deg); }
+    100% { transform: rotateX(360deg) rotateY(360deg); }
+  }
+  .center-label {
+    display: none;
+  }
+  .orbit-ring {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  .orbit-member {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(var(--angle)) translateX(320px) rotate(calc(-1 * var(--angle)));
+    pointer-events: auto;
+    cursor: pointer;
+    transition: all 0.4s;
+    opacity: 0.8;
+  }
+  .orbit-member:hover {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(var(--angle)) translateX(340px) rotate(calc(-1 * var(--angle))) scale(1.1);
+  }
+  /* No connecting lines */
+  .orbit-member:hover {
+    transform: translate(-50%, -50%) rotate(var(--angle)) translateX(240px) rotate(calc(-1 * var(--angle))) scale(1.1);
+  }
+  .member-avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid var(--color);
+    box-shadow: 0 0 20px var(--color);
+    margin: 0 auto 0.5rem;
+    transition: all 0.4s;
+  }
+  .member-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .orbit-member:hover .member-avatar {
+    box-shadow: 0 0 30px var(--color);
+    transform: scale(1.1);
+  }
+  .member-info {
+    text-align: center;
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.3s;
+    pointer-events: auto;
+  }
+  .member-info h3 {
+    font-family: "Playfair Display", serif;
+    font-size: 0.85rem;
+    color: var(--text);
+    font-weight: 400;
+    margin-bottom: 0.2rem;
+  }
+  .member-role {
+    font-size: 0.6rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--color);
+  }
+  .orbit-detail {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    max-width: 500px;
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 4px;
+    padding: 2rem;
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+    transition: all 0.4s;
+    pointer-events: none;
+  }
+  .orbit-detail.active {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: auto;
+  }
+  .detail-inner {
+    text-align: center;
+  }
+  .detail-inner h3 {
+    font-family: "Playfair Display", serif;
+    font-size: 1.4rem;
+    color: var(--accent-2);
+    font-weight: 400;
+    margin-bottom: 0.3rem;
+  }
+  .detail-role {
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 1rem;
+  }
+  .detail-quote {
+    font-style: italic;
+    color: var(--muted);
+    font-size: 0.95rem;
+    font-family: "Playfair Display", serif;
+    font-weight: 300;
+    line-height: 1.6;
+  }
+  @media (max-width: 720px) {
+    .council-orbit {
+      min-height: 400px;
+    }
+    .orbit-member {
+      transform: translate(-50%, -50%) rotate(var(--angle)) translateX(150px) rotate(calc(-1 * var(--angle)));
+    }
+    .orbit-member:hover {
+      transform: translate(-50%, -50%) rotate(var(--angle)) translateX(165px) rotate(calc(-1 * var(--angle))) scale(1.05);
+    }
+    .member-avatar {
+      width: 60px;
+      height: 60px;
+    }
+    .member-info h3 {
+      font-size: 0.7rem;
+    }
+    .member-role {
+      font-size: 0.5rem;
+    }
+  }
+
+  .mission-vision-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  @media (max-width: 720px) {
+    .mission-vision-grid { grid-template-columns: 1fr; }
+  }
+  .mv-card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 4px;
+    padding: 3rem 2.5rem;
+    transition: all 0.4s;
+    backdrop-filter: blur(4px);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+  .mv-card:hover {
+    border-color: var(--accent);
+    box-shadow: var(--glow);
+  }
+  .mv-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(74,144,217,0.08), transparent 50%);
+    pointer-events: none;
+  }
+  .mv-card h3 {
+    font-family: "Playfair Display", serif;
+    font-size: 1.8rem;
+    color: var(--accent-2);
+    font-weight: 400;
+    margin-bottom: 1rem;
+  }
+  .mv-card p {
+    color: var(--muted);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  .mv-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  }
+</style>
+</head>
+<body>
+  <div class="noise"></div>
+  <div class="orb one"></div>
+  <div class="orb two"></div>
+  <div class="orb three"></div>
+  <div class="record"></div>
+  <div class="grid-bg"></div>
+  <div class="cursor"></div>
+  <div class="scroll-progress"></div>
+  <div class="side-left">
+    <span class="side-text">the council</span>
+    <div class="side-line"></div>
+  </div>
+  <div class="side-right">
+    <div class="side-line"></div>
+    <span class="side-text">mark shane cruzado</span>
+  </div>
+  <header class="site-header">
+    <div class="logo"><span class="cube"><span class="face front"></span><span class="face back"></span><span class="face right"></span><span class="face left"></span><span class="face top"></span><span class="face bottom"></span></span><span class="dot">ARQ</span></div>
+    <button class="burger" id="burgerBtn" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="mainNav">
+      <a href="index.html">home</a>
+      <a href="about.html" class="active">about</a>
+      <a href="projects.html">projects</a>
+      <a href="contact.html">contact</a>
+    </nav>
+  </header>
+  <main class="page">
+    <h1>The Team</h1>
+    <p class="section-lead">The people behind every project — builders, designers, and thinkers who bring ideas to life.</p>
+
+    <div class="council-orbit">
+      <div class="orbit-center">
+        <div class="center-cube">
+          <div class="cube-face front">ARQ</div>
+          <div class="cube-face back">ARQ</div>
+          <div class="cube-face right">ARQ</div>
+          <div class="cube-face left">ARQ</div>
+          <div class="cube-face top">ARQ</div>
+          <div class="cube-face bottom">ARQ</div>
+        </div>
+        <p class="center-label"></p>
+      </div>
+      <div class="orbit-ring">
+        <div class="orbit-member" style="--angle:0deg; --color:#e8a87c;" data-name="Marcus Pelaez" data-role="Project Manager" data-quote="Great work starts with a clear plan, and ends with something worth being proud of.">
+          <div class="member-avatar"><img src="pics/sir.jpg" alt="Marcus Pelaez"></div>
+          <div class="member-info">
+            <h3>Marcus Pelaez</h3>
+            <span class="member-role">Project Manager</span>
+          </div>
+        </div>
+        <div class="orbit-member" style="--angle:60deg; --color:#a78bfa;" data-name="Yukki" data-role="Senior Developer" data-quote="Good code is its own documentation — clean, readable, and built to last.">
+          <div class="member-avatar"><img src="pics/yuk.jpg" alt="Yukki"></div>
+          <div class="member-info">
+            <h3>Yukki</h3>
+            <span class="member-role">Senior Developer</span>
+          </div>
+        </div>
+        <div class="orbit-member" style="--angle:120deg; --color:#34d399;" data-name="Clarence Feliciano" data-role="Backend Developer" data-quote="Strong foundations make everything else possible — build it right, and it will stand the test of time.">
+          <div class="member-avatar"><img src="pics/miku.jpg" alt="Clarence Feliciano"></div>
+          <div class="member-info">
+            <h3>Clarence Feliciano</h3>
+            <span class="member-role">Backend Developer</span>
+          </div>
+        </div>
+        <div class="orbit-member" style="--angle:180deg; --color:#60a5fa;" data-name="Mark Shane Cruzado" data-role="Front-end Developer" data-quote="Design is how it feels, not just how it looks — every pixel should have a purpose.">
+          <div class="member-avatar"><img src="pics/shn.jpg" alt="Mark Shane Cruzado"></div>
+          <div class="member-info">
+            <h3>Mark Shane Cruzado</h3>
+            <span class="member-role">Front-end Developer</span>
+          </div>
+        </div>
+        <div class="orbit-member" style="--angle:240deg; --color:#fbbf24;" data-name="Linus Paul Roxas" data-role="UI/UX Design" data-quote="Every detail shapes the experience — design is invisible when it's done right.">
+          <div class="member-avatar"><img src="pics/linx.jpg" alt="Linus Paul Roxas"></div>
+          <div class="member-info">
+            <h3>Linus Paul Roxas</h3>
+            <span class="member-role">UI/UX Design</span>
+          </div>
+        </div>
+        <div class="orbit-member" style="--angle:300deg; --color:#f472b6;" data-name="Trisha May Tudillo" data-role="Document Specialist" data-quote="Clear words build clear understanding — documentation is the bridge between code and people.">
+          <div class="member-avatar"><img src="pics/docs.jpg" alt="Trisha May Tudillo"></div>
+          <div class="member-info">
+            <h3>Trisha May Tudillo</h3>
+            <span class="member-role">Document Specialist</span>
+          </div>
+        </div>
+      </div>
+      <div class="orbit-detail" id="orbitDetail">
+        <div class="detail-inner">
+          <h3 id="detailName"></h3>
+          <span class="detail-role" id="detailRole"></span>
+          <p class="detail-quote" id="detailQuote"></p>
+        </div>
+      </div>
+    </div>
+
+    <section class="what-i-do" style="text-align:center; margin-top: 5rem;">
+      <h2>Our Core Values</h2>
+      <p class="section-lead">The principles that guide everything we create.</p>
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="value-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          </div>
+          <h3>Creativity</h3>
+          <p>We turn bold ideas into thoughtful, beautiful work.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3>Collaboration</h3>
+          <p>We listen, share, and build better things together.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 1 1 7.072 0l-.548.547A3.374 3.374 0 0 0 14 18.469V19a2 2 0 1 1-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+          </div>
+          <h3>Innovation</h3>
+          <p>We keep learning and exploring smarter ways to solve problems.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Commitment</h3>
+          <p>We take ownership and see every project through.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="what-i-do" style="text-align:center; margin-top: 5rem;">
+      <h2>Mission & Vision</h2>
+      <p class="section-lead">What we aim to accomplish and where we are headed.</p>
+      <div class="mission-vision-grid">
+        <div class="mv-card">
+          <h3>Our Mission</h3>
+          <p>To design and build meaningful digital experiences that are clear, reliable, and made with care.</p>
+        </div>
+        <div class="mv-card">
+          <h3>Our Vision</h3>
+          <p>To be a team known for work that inspires and for growing together as creators.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <footer><p>© 2026 Mark Shane Cruzado · built with passion and precision</p></footer>
+  <script>
+    const cursor = document.querySelector('.cursor');
+    document.addEventListener('mousemove', e => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+    });
+    document.querySelectorAll('a, button, .card, .pill, .council-card, .value-card, .mv-card, .orbit-member').forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+    });
+    const scrollProgress = document.querySelector('.scroll-progress');
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (scrollTop / docHeight) * 100;
+      scrollProgress.style.width = progress + '%';
+    });
+    // Orbit member click
+    const detail = document.getElementById('orbitDetail');
+    const detailName = document.getElementById('detailName');
+    const detailRole = document.getElementById('detailRole');
+    const detailQuote = document.getElementById('detailQuote');
+    document.querySelectorAll('.orbit-member').forEach(member => {
+      member.addEventListener('click', () => {
+        detailName.textContent = member.dataset.name;
+        detailRole.textContent = member.dataset.role;
+        detailQuote.textContent = '"' + member.dataset.quote + '"';
+        detail.classList.add('active');
+      });
+    });
+    // Click outside to close
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.orbit-member') && !e.target.closest('.orbit-detail')) {
+        detail.classList.remove('active');
+      }
+    });
+  </script>
+</body>
+</html>
